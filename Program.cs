@@ -17,28 +17,28 @@ namespace Operátorok
 			{
 				if (kif[1] == "+")
 				{
-					eredmeny = formatum + "=" + (int.Parse(kif[0]) + int.Parse(kif[1]));
+					eredmeny = $"{formatum} = {(int.Parse(kif[0]) + int.Parse(kif[1]))}";
 				}
 				else if (kif[1] == "-")
 				{
-					eredmeny = formatum + "=" + (int.Parse(kif[0]) - int.Parse(kif[1]));
+					eredmeny = $"{formatum} = {(int.Parse(kif[0]) - int.Parse(kif[1]))}";
 				}
 				else if (kif[1] == "*")
 				{
-					eredmeny = formatum + "=" + (int.Parse(kif[0]) * int.Parse(kif[1]));
+					eredmeny = $"{formatum} = {(int.Parse(kif[0]) * int.Parse(kif[1]))}";
 				}
 				else if (kif[1] == "/")
 				{
-					eredmeny = formatum + "=" + (int.Parse(kif[0]) / int.Parse(kif[1]));
+					eredmeny = $"{formatum} = {(int.Parse(kif[0]) / int.Parse(kif[1]))}";
 				}
 				else if (kif[1] == "mod")
 				{
-					eredmeny = formatum + "=" + (int.Parse(kif[0]) % int.Parse(kif[1]));
+					eredmeny = $"{formatum} = {(int.Parse(kif[0]) % int.Parse(kif[1]))}";
 				}
 				else if (kif[1] == "div")
 				{
 
-					eredmeny = formatum + "=" + Math.Floor(double.Parse(kif[0])) / Math.Floor(double.Parse(kif[1]));
+					eredmeny = $"{formatum} = {Math.Floor(double.Parse(kif[0])) / Math.Floor(double.Parse(kif[1]))}";
 				}
 				else { Console.WriteLine($"{formatum} = Hibás operátor!");  }
 			}
