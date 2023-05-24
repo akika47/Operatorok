@@ -19,6 +19,8 @@ namespace Operátorok
 			this.masodikSzam = masodikSzam;
 		}
 
+
+
 		public int ElsoSzam { get => elsoSzam;}
 		public string Op { get => op;}
 		public int MasodikSzam { get => masodikSzam;}
