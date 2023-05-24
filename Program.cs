@@ -6,7 +6,48 @@ namespace Operátorok
 
 	internal class Program
 	{
+		//6.feladat
+		string Kiszamol(string kifejezes)
+		{
+			string eredmeny = "";
+			string formatum = "";
+			string[] kif = kifejezes.Split(' ');
+			formatum = kif[0] + " " + kif[1] + " " + kif[2];
+			try
+			{
+				if (kif[1] == "+")
+				{
+					eredmeny = formatum + "=" + (int.Parse(kif[0]) + int.Parse(kif[1]));
+				}
+				else if (kif[1] == "-")
+				{
+					eredmeny = formatum + "=" + (int.Parse(kif[0]) - int.Parse(kif[1]));
+				}
+				else if (kif[1] == "*")
+				{
+					eredmeny = formatum + "=" + (int.Parse(kif[0]) * int.Parse(kif[1]));
+				}
+				else if (kif[1] == "/")
+				{
+					eredmeny = formatum + "=" + (int.Parse(kif[0]) / int.Parse(kif[1]));
+				}
+				else if (kif[1] == "mod")
+				{
+					eredmeny = formatum + "=" + (int.Parse(kif[0]) % int.Parse(kif[1]));
+				}
+				else if (kif[1] == "div")
+				{
 
+					eredmeny = formatum + "=" + Math.Floor(double.Parse(kif[0])) / Math.Floor(double.Parse(kif[1]));
+				}
+				else { Console.WriteLine($"{formatum} = Hibás operátor!");  }
+			}
+			catch (Exception)
+			{
+				Console.WriteLine($"{formatum} = Egyéb hiba!");
+			}
+			return eredmeny;
+		}
 		static void Main(string[] args)
 		{
 			List<Operatorok> kifejezesek = new List<Operatorok>();
@@ -35,70 +76,38 @@ namespace Operátorok
 
 			//5.feladat
 			Console.WriteLine("5. feladat: Statisztika");
-			kifejezesek.GroupBy(x => x.Op).Where(x => x.Key == "mod" || x.Key == "/" || x.Key == "div" || x.Key == "-" || x.Key == "*" || x.Key == "+").OrderBy(x => x.Key).ToList().ForEach(x => Console.WriteLine($"\t{x.Key} - {x.Count()}"));
+			//kifejezesek.GroupBy(x => x.Op).Where(x => x.Key == "mod" || x.Key == "/" || x.Key == "div" || x.Key == "-" || x.Key == "*" || x.Key == "+").OrderBy(x => x.Key).ToList().ForEach(x => Console.WriteLine($"\t{x.Key} - {x.Count()}"));
+			Console.WriteLine($"\tmod -> {kifejezesek.Count(x => x.Op == "mod")} db");
+			Console.WriteLine($"\t  / -> {kifejezesek.Count(x => x.Op == "/")} db");
+			Console.WriteLine($"\tdiv -> {kifejezesek.Count(x => x.Op == "div")} db");
+			Console.WriteLine($"\t  - -> {kifejezesek.Count(x => x.Op == "-")} db");
+			Console.WriteLine($"\t  * -> {kifejezesek.Count(x => x.Op == "*")} db");
+			Console.WriteLine($"\t  + -> {kifejezesek.Count(x => x.Op == "+")} db");
 
-            //7.feladat
-            Console.WriteLine("7. feladat: Kérek egy kifejezeést (pl.: 1 + 1): ");
-			string kifejezes = Console.ReadLine();
+			//7.feladat
+			string kifejez;
+			do
+			{
+				Console.Write("7. feladat: Kérek egy kifejezeést (pl.: 1 + 1): ");
+				kifejez = Console.ReadLine();
+				var program = new Program();
+				program.Kiszamol(kifejez);
+				Console.WriteLine($"\t {program}");
+			} while (kifejez != "vége");
 
 
-            //8.feladat
-            using (StreamWriter wr = new StreamWriter("eredmények.txt"))
+
+			//8.feladat
+			using (StreamWriter wr = new StreamWriter("eredmények.txt"))
 			{
 				foreach (var item in kifejezesek)
 				{
-					wr.WriteLine($"{item.ElsoSzam} {item.Op} {item.MasodikSzam} = ");
-				
+					var prog= new Program();
 
+					wr.WriteLine();
 
-
-
-			}
-			//6.feladat
-			string Kiszamol(string kifejezes)
-			{
-				string eredmeny = "";
-				if (kifejezes.Equals("vége"))
-				{
-					return "vége";
 				}
 
-				string[] kif = kifejezes.Split(' ');
-				try
-				{
-					if (kif[1] == "+")
-					{
-						eredmeny = $"{int.Parse(kif[0]) + int.Parse(kif[1])}";
-					}
-					else if (kif[1] == "-")
-					{
-						eredmeny = $"{int.Parse(kif[0]) - int.Parse(kif[1])}";
-					}
-					else if (kif[1] == "*")
-					{
-						eredmeny = $"{int.Parse(kif[0]) * int.Parse(kif[1])}";
-					}
-					else if (kif[1] == "/")
-					{
-						eredmeny = $"{int.Parse(kif[0]) / int.Parse(kif[1])}";
-					}
-					else if (kif[1] == "mod")
-					{
-						eredmeny = $"{int.Parse(kif[0]) % int.Parse(kif[1])}";
-					}
-					else if (kif[1] == "div")
-					{
-
-						eredmeny = $"{Math.Floor(double.Parse( kif[0])) / Math.Floor(double.Parse(kif[1]))}";
-					}
-					else { Console.WriteLine("Hibás operátor!"); }
-				}
-				catch (Exception)
-				{
-					Console.WriteLine("Egyéb Hiba!");
-					throw; 
-				}
-				return eredmeny;
 			}
 		}
 	}
