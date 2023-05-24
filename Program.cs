@@ -100,15 +100,18 @@ namespace Operátorok
 			//8.feladat
 			using (StreamWriter wr = new StreamWriter("eredmények.txt"))
 			{
-				foreach (var item in kifejezesek)
-				{
-					var prog= new Program();
 
-					wr.WriteLine();
+				string beir = "";
+                foreach (var item in kifejezesek)
+					{
+						beir = $"{item.ElsoSzam} {item.Op} {item.MasodikSzam}";
+						wr.Write($"{Kiszamol(beir)} \n");
+					}
+					wr.Close();
+					Console.WriteLine("8. feladat: eredmenyek.txt");
 
 				}
 
 			}
-		}
 	}
 }
